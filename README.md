@@ -11,6 +11,8 @@ games.
 
 ## Completions
 
+**Day One:**
+
 * [x] Window Creation
 * [x] Input Handling
 * [x] Logger
