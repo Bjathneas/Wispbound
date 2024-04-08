@@ -22,12 +22,16 @@ namespace Elementa {
     bool keyPressed(int key) {
         return glfwGetKey(GLFW_WINDOW, key) == GLFW_PRESS;
     }
-    
+
     bool keyJustPressed(int key) {
+        if (!Input.changed_key_states.contains(key))
+            return false;
         return Input.changed_key_states[key] == GLFW_PRESS;
     }
 
     bool keyJustReleased(int key) {
+        if (!Input.changed_key_states.contains(key))
+            return false;
         return Input.changed_key_states[key] == GLFW_RELEASE;
     }
 
@@ -36,10 +40,14 @@ namespace Elementa {
     }
 
     bool mouseJustPressed(int button) {
+        if (!Input.changed_button_states.contains(button))
+            return false;
         return Input.changed_button_states[button] == GLFW_PRESS;
     }
 
     bool mouseJustReleased(int button) {
+        if (!Input.changed_button_states.contains(button))
+            return false;
         return Input.changed_button_states[button] == GLFW_RELEASE;
     }
 
