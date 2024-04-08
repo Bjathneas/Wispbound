@@ -10,14 +10,14 @@ namespace Elementa {
 
     std::fstream log_file;
 
-    void log(const char* level, const char* file, int line, const std::string& message) {
+    void log(const char *level, const char *file, int line, const std::string &message) {
         //check if log_file is opened, if not open it
-        if(!log_file.is_open()) {
-            if(!std::filesystem::exists("logs"))
+        if (!log_file.is_open()) {
+            if (!std::filesystem::exists("logs"))
                 std::filesystem::create_directories("logs");
 
-            //Check that current logs are at the limit of 5
-            if(std::filesystem::exists("logs/latest.log")) {
+            //Check that current log exists and replace it if it does
+            if (std::filesystem::exists("logs/latest.log")) {
                 //open latest log and get the date of the first log and rename log to that
                 std::ifstream latest_log("logs/latest.log", std::ios_base::in);
                 std::string new_log;
@@ -30,8 +30,8 @@ namespace Elementa {
             log_file.open("logs/latest.log", std::ios_base::out);
         }
         std::string log_str = getCurrentTimeString() + "[" +
-                file + ":" + std::to_string(line) + "] " + level +
-                ": " + message + "\n";
+                              file + ":" + std::to_string(line) + "] " + level +
+                              ": " + message + "\n";
         printf("%s", log_str.c_str());
 
         log_file << log_str;

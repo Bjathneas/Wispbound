@@ -5,6 +5,7 @@
 
 namespace Elementa {
     void initEngine(const char *title, int width, int height) {
+        INFO("KEEP IT SIMPLE, MORE FEATURES AS THEY ARE NEEDED");
         //GLFW
         if (!glfwInit()) {
             CRITICAL("GLFW failed to initialize. Terminating application");
@@ -23,7 +24,7 @@ namespace Elementa {
         //GLEW
         glewExperimental = true;
         if (!glewInit()) {
-            CRITICAL("GLEW failed to intialize. Terminating application");
+            CRITICAL("GLEW failed to initialize. Terminating application");
         }
         DEBUG("GLEW INITIALIZED");
         //Dear ImGui
@@ -39,7 +40,6 @@ namespace Elementa {
     void startEngine() {
         DEBUG("STARTING APPLICATION");
         startWindow();
-
     }
 
     void update() {

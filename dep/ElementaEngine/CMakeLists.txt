@@ -14,7 +14,14 @@ add_library(Elementa
         src/Engine.cpp
         src/utils/Logger.cpp
         include/Elementa/core/InputHandler.h
-        src/core/InputHandler.cpp)
+        src/core/InputHandler.cpp
+        include/Elementa/graphics/Shader.h
+        include/Elementa/graphics/VBO.h
+        include/Elementa/graphics/VAO.h
+        include/Elementa/graphics/Sprite.h
+        include/Elementa/ecs/Entity.h
+        include/Elementa/ecs/Component.h
+)
 
 target_include_directories(Elementa PUBLIC include)
 target_link_libraries(Elementa OpenGL::GL)
