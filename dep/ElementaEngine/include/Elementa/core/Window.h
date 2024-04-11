@@ -21,7 +21,7 @@ namespace Elementa {
         GLFWwindow *glfw_window{nullptr};
         int fps_limit{0};
         double fps{0.0}, delta_time;
-        bool vsync{true};
+        bool vsync{true}, show_debug_info;
         const char *title{};
         std::function<void()> update, render;
     } Window;
@@ -34,6 +34,12 @@ namespace Elementa {
     void startWindow();
 
     void renderUI();
+
+    void setVsync(bool vsync);
+
+    void setFpsLimit(int fps_limit);
+
+    void setTitle(const char *title);
 
     int getWindowWidth();
 

@@ -7,5 +7,9 @@
 namespace Elementa {
     struct Component {
     };
+
+    struct PosComponent {
+        double x, y;
+    };
 }
 #endif //WISPBOUND_COMPONENT_H

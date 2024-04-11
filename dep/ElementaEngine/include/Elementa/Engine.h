@@ -17,11 +17,10 @@ namespace Elementa {
 
     void update();
 
-    void render();
+    void render(); //is its own system
 
-    unsigned int createEntity();
+    // TODO: LOOP THROUGH ENTITIES IN SCENE AND CHECK IF THEY HAVE SPECIFIED COMPONENT
 
-    void addSystem(std::function<void()> system);
 }
 
 #endif //WISPBOUND_ENGINE_H

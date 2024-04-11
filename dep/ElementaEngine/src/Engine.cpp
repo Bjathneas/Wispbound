@@ -43,6 +43,8 @@ namespace Elementa {
     }
 
     void update() {
+        if (keyPressed(KEY_LEFT_CONTROL) && keyJustPressed(KEY_D))
+            window.show_debug_info = !window.show_debug_info;
 
     }
 
@@ -52,7 +54,15 @@ namespace Elementa {
         ImGui::NewFrame();
 
         glClear(GL_COLOR_BUFFER_BIT);
-        ImGui::ShowDemoWindow();
+        //ImGui Debug Window
+        if (window.show_debug_info) {
+            ImGui::Begin("Debugging", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+            ImGui::Text("Vsync: %s", window.vsync ? "True" : "False");
+            ImGui::Text("Delta_Time: %f", window.delta_time);
+            ImGui::Text("FPS: %f | FPS_LIMIT: %i", window.fps, window.fps_limit);
+            ImGui::Text("Size: w: %i | h: %i", getWindowWidth(), getWindowHeight());
+            ImGui::End();
+        }
 
     }
 }

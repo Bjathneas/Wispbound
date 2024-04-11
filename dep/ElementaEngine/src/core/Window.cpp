@@ -62,9 +62,9 @@ namespace Elementa {
             updateInputData();
             glfwPollEvents();
 
-            if (window.fps_limit > 0) {
+            if (window.fps_limit > 0 && !window.vsync) {
                 double frame_time = 1.0 / window.fps_limit;
-                double sleep_time = frame_time - TIME - previous_time;
+                double sleep_time = frame_time - (TIME - previous_time);
                 if (sleep_time > 0.0)
                     std::this_thread::sleep_for(std::chrono::duration<double>(sleep_time));
             }

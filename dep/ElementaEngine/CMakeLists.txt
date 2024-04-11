@@ -21,6 +21,7 @@ add_library(Elementa
         include/Elementa/graphics/Sprite.h
         include/Elementa/ecs/Entity.h
         include/Elementa/ecs/Component.h
+        include/Elementa/ecs/Manager.h
 )
 
 target_include_directories(Elementa PUBLIC include)
