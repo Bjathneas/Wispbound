@@ -13,6 +13,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "implot.h"
 
 #define DELTA_TIME window.delta_time
 
@@ -24,6 +25,7 @@ namespace Elementa {
         bool vsync{true}, show_debug_info;
         const char *title{};
         std::function<void()> update, render;
+
     } Window;
 
     extern Window window;

@@ -15,6 +15,8 @@ namespace Elementa {
 
     void startEngine();
 
+    extern std::vector<double> update_frame_times, render_frame_times, frame_times, frame_count;
+
     void update();
 
     void render(); //is its own system
