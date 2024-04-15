@@ -21,7 +21,20 @@ namespace Elementa {
 
     void render(); //is its own system
 
-    // TODO: LOOP THROUGH ENTITIES IN SCENE AND CHECK IF THEY HAVE SPECIFIED COMPONENT
+    //Entity managment without the use of the manager specific functions
+    void destroyEntity();
+
+    unsigned int createEntity();
+
+    void addComponentToEntity();
+
+    std::shared_ptr<Entity> getEntityByUID(unsigned int uid);
+
+    //INFO: SCENE SPECIFIC
+    template<typename Comp/*int - > typeid(type).hash_code()*/>
+    std::vector<std::shared_ptr<Entity>> getEntitiesWithComponent() {
+        
+    }
 
 }
 

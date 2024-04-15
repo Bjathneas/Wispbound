@@ -18,6 +18,7 @@ add_library(Elementa
         src/utils/File.cpp
         src/graphics/Color.cpp
         src/graphics/Sprite.cpp
+        src/ecs/Manager.cpp
 )
 
 target_include_directories(Elementa PUBLIC include)

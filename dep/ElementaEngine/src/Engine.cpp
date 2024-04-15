@@ -58,6 +58,8 @@ namespace Elementa {
 
         auto start_time = glfwGetTime();
 
+        // TODO: Create a system that loops all entities in the world and places the visible ones within the scene
+
         //Actual update functionality for game
         if (keyPressed(KEY_LEFT_CONTROL) && keyJustPressed(KEY_D))
             window.show_debug_info = !window.show_debug_info;

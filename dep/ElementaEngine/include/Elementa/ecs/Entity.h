@@ -9,7 +9,7 @@
 #include <unordered_map>
 
 #include "Elementa/ecs/Component.h"
-// TODO : EVERYTHING HERE
+
 namespace Elementa {
     struct Entity {
         unsigned int uid;
@@ -17,13 +17,17 @@ namespace Elementa {
     };
 
     template<typename Comp>
-    bool entityContainsComponent(unsigned int uid) {
-
+    bool entityContainsComponent(std::shared_ptr<Entity> &entity) {
+        return entity->components.contains(typeid(Comp).hash_code());
     }
 
     template<typename Comp>
-    bool entityContainsComponent(std::shared_ptr<Entity> entity) {
-
+    std::shared_ptr<Comp> getEntityComponent(std::shared_ptr<Entity> &entity) {
+        int comp_id = typeid(Comp).hash_code();
+        if (entity->components.contains(comp_id))
+            return std::static_pointer_cast<Comp>(entity->components[comp_id]);
+        else
+            return nullptr;
     }
 }
 #endif //WISPBOUND_ENTITY_H

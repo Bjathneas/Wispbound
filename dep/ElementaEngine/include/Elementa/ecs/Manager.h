@@ -21,22 +21,36 @@ namespace Elementa {
 
     typedef std::function<void()> System;
 
-    void addSystemToManager(System sys, Manager manager);
+    unsigned int createEntity(Manager &manager);
 
-    unsigned int createEntity(Manager manager);
+    //To allow moving an entity from another manager
+    void addEntity(Manager &manager, const std::shared_ptr<Entity> &entity);
 
-    void destroyEntity(Manager manager, unsigned int uid);
+    //To allow removing an entity from the manager
+    void removeEntity(Manager &manager, unsigned int entity_uid);
 
-    void destroyEntity(Manager manager, std::shared_ptr<Entity>);
-
-    void addComponentToEntity(Manager manager, int uid, Component component);
-
-    void addComponentToEntity(Manager manager, std::shared_ptr<Entity> entity, Component component);
+    void removeEntity(Manager &manager, std::shared_ptr<Entity> &entity);
 
     template<typename Comp/*int - > typeid(type).hash_code()*/>
-    std::vector<std::shared_ptr<Entity>> getEntitiesWithComponent(Manager manager) {
-
+    void addComponentToEntity(Manager &manager, int uid, std::shared_ptr<Comp> component) {
+        if (manager.entities.contains(uid)) {
+            int comp_id = typeid(Comp).hash_code();
+            manager.entities[uid]->components[comp_id] = component;
+            manager.entities_by_component[comp_id].push_back(component);
+        }
     }
+
+    template<typename Comp/*int - > typeid(type).hash_code()*/>
+    void addComponentToEntity(Manager &manager, std::shared_ptr<Entity> &entity, std::shared_ptr<Comp> component) {
+        addComponentToEntity(manager, entity->uid, component);
+    }
+
+    template<typename Comp/*int - > typeid(type).hash_code()*/>
+    std::vector<unsigned int> getEntitiesWithComponent(Manager &manager) {
+        return manager.entities_by_component[typeid(Comp).hash_code()];
+    }
+
+    std::shared_ptr<Entity> getEntityByUID(Manager &manger, unsigned int entity_uid);
 }
 
 #endif //WISPBOUND_MANAGER_H
