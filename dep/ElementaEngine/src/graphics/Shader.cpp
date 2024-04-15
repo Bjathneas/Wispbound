@@ -39,6 +39,8 @@ namespace Elementa {
     }
 
     Shader loadShaderFromFile(const char *path) {
+        ensureFileExists(path);
+        
         SHADER_TYPE type;
 
         std::string extension = std::filesystem::path(path).extension();

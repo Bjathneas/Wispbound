@@ -9,6 +9,8 @@
 
 namespace Elementa {
     std::string fileToString(const char *path);
+
+    void ensureFileExists(const char *path);
 }
 
 #endif //WISPBOUND_FILE_H

@@ -10,26 +10,31 @@
 #include "Elementa/ecs/Entity.h"
 
 namespace Elementa {
+    //Creates, Removes, and Edits all Entities
     struct Manager {
+        //Keep a map of entities by their uid to optimize entity lookup
         std::unordered_map<unsigned int, std::shared_ptr<Entity>> entities;
+        //Keep a map of entites(by uid) by their component to optimize getEntitiesWithComponent
+        std::unordered_map<int/*typeid(type).hash_code()*/, std::vector<unsigned int>> entities_by_component;
+        unsigned int next_uid{0};
     };
-
-    extern Manager world;
-    //rethink scene, just develop ecs as world cords
-    //extern Manager scene;//Stores entity if it exists in scene, or has no position
 
     typedef std::function<void()> System;
 
-    extern std::vector<System> systems;
+    void addSystemToManager(System sys, Manager manager);
 
-    void addSystem(System sys);
+    unsigned int createEntity(Manager manager);
 
-    extern unsigned int next_uid;
+    void destroyEntity(Manager manager, unsigned int uid);
 
-    unsigned int createEntity();
+    void destroyEntity(Manager manager, std::shared_ptr<Entity>);
 
-    template<typename Comp>
-    std::vector<std::shared_ptr<Entity>> getEntitiesWithComponent() {
+    void addComponentToEntity(Manager manager, int uid, Component component);
+
+    void addComponentToEntity(Manager manager, std::shared_ptr<Entity> entity, Component component);
+
+    template<typename Comp/*int - > typeid(type).hash_code()*/>
+    std::vector<std::shared_ptr<Entity>> getEntitiesWithComponent(Manager manager) {
 
     }
 }

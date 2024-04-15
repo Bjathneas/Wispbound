@@ -11,16 +11,18 @@
 
 namespace Elementa {
     std::string fileToString(const char *path) {
-        if (!std::filesystem::exists(path)) {
-            CRITICAL("File[" + std::string(path) + "] Does Not Exist");
-            exit(EXIT_FAILURE);
-        }
-
         std::fstream file(path, std::ios_base::in);
 
         std::stringstream file_stream;
         file_stream << file.rdbuf();
 
         return file_stream.str();
+    }
+
+    void ensureFileExists(const char *path) {
+        if (!std::filesystem::exists(path)) {
+            CRITICAL("File[" + std::string(path) + "] Does Not Exist");
+            exit(EXIT_FAILURE);
+        }
     }
 }

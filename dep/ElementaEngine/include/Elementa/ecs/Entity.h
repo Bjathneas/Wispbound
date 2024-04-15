@@ -13,7 +13,7 @@
 namespace Elementa {
     struct Entity {
         unsigned int uid;
-        std::unordered_map<const char *, std::shared_ptr<Component>> components;
+        std::unordered_map<int/*typeid(type).hash_code()*/, std::shared_ptr<Component>> components;
     };
 
     template<typename Comp>
@@ -25,9 +25,5 @@ namespace Elementa {
     bool entityContainsComponent(std::shared_ptr<Entity> entity) {
 
     }
-
-    void addComponentToEntity(unsigned int uid, Component component);
-
-    void addComponentToEntity(std::shared_ptr<Entity> entity, Component component);
 }
 #endif //WISPBOUND_ENTITY_H

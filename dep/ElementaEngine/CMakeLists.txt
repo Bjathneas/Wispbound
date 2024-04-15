@@ -13,20 +13,11 @@ add_library(Elementa
         src/core/Window.cpp
         src/Engine.cpp
         src/utils/Logger.cpp
-        include/Elementa/core/InputHandler.h
         src/core/InputHandler.cpp
-        include/Elementa/graphics/Shader.h
-        include/Elementa/graphics/VBO.h
-        include/Elementa/graphics/VAO.h
-        include/Elementa/graphics/Sprite.h
-        include/Elementa/ecs/Entity.h
-        include/Elementa/ecs/Component.h
-        include/Elementa/ecs/Manager.h
-        include/Elementa/graphics/Color.h
         src/graphics/Shader.cpp
-        include/Elementa/utils/File.h
         src/utils/File.cpp
         src/graphics/Color.cpp
+        src/graphics/Sprite.cpp
 )
 
 target_include_directories(Elementa PUBLIC include)
