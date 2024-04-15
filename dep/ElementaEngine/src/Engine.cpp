@@ -82,19 +82,24 @@ namespace Elementa {
         if (window.show_debug_info) {
             ImGui::Begin("Debugging", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
             ImGui::Text("Vsync: %s", window.vsync ? "True" : "False");
-            ImGui::Text("FPS: %f | FPS_LIMIT: %i", window.fps, window.fps_limit);
-            ImGui::Text("Delta_Time: %f", DELTA_TIME);
-            ImGui::Text("FrameTimes:\n\tUpdate: %fms\n\tRender: %fms\n\tTotal: %fms", update_frame_times[29],
-                        render_frame_times[29], DELTA_TIME * 1000);
-            ImPlot::SetNextAxesToFit();
-            if (ImPlot::BeginPlot("FrameTimes", ImVec2(300, 200))) {
-                ImPlot::SetupAxes("", "Time(ms)");
-                ImPlot::PlotLine("Total", frame_count.data(), frame_times.data(), 29, ImPlotLineFlags_Shaded);
-                ImPlot::PlotLine("Update", frame_count.data(), update_frame_times.data(), 29);
-                ImPlot::PlotLine("Render", frame_count.data(), render_frame_times.data(), 29);
-                ImPlot::EndPlot();
+            if (ImGui::CollapsingHeader("FrameTimes", ImGuiTreeNodeFlags_DefaultOpen)) {
+                ImGui::Text("Delta_Time: %f", DELTA_TIME);
+                ImGui::Text("FPS: %f | FPS_LIMIT: %i", window.fps, window.fps_limit);
+                ImGui::Text("Update: %fms\nRender: %fms\nTotal: %fms", update_frame_times[29],
+                            render_frame_times[29], DELTA_TIME * 1000);
+                ImPlot::SetNextAxesToFit();
+                if (ImPlot::BeginPlot("Timings", ImVec2(300, 200))) {
+                    ImPlot::SetupAxes("", "Time(ms)");
+                    ImPlot::PlotLine("Total", frame_count.data(), frame_times.data(), 29, ImPlotLineFlags_Shaded);
+                    ImPlot::PlotLine("Update", frame_count.data(), update_frame_times.data(), 29);
+                    ImPlot::PlotLine("Render", frame_count.data(), render_frame_times.data(), 29);
+                    ImPlot::EndPlot();
+                }
             }
             ImGui::Text("Size:\n\twidth : %ipx\n\theight: %ipx", getWindowWidth(), getWindowHeight());
+            if (ImGui::Button("close")) {
+                window.show_debug_info = false;
+            }
             ImGui::End();
         }
 

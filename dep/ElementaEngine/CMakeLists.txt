@@ -22,6 +22,11 @@ add_library(Elementa
         include/Elementa/ecs/Entity.h
         include/Elementa/ecs/Component.h
         include/Elementa/ecs/Manager.h
+        include/Elementa/graphics/Color.h
+        src/graphics/Shader.cpp
+        include/Elementa/utils/File.h
+        src/utils/File.cpp
+        src/graphics/Color.cpp
 )
 
 target_include_directories(Elementa PUBLIC include)

@@ -9,6 +9,7 @@
 #include <functional>
 
 #include "Elementa/core/InputHandler.h"
+#include "Elementa/graphics/Color.h"
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -20,6 +21,7 @@
 namespace Elementa {
     typedef struct Window_ {
         GLFWwindow *glfw_window{nullptr};
+        Color background_color{colorFromRGB(135, 206, 235)};
         int fps_limit{0};
         double fps{0.0}, delta_time;
         bool vsync{true}, show_debug_info;
@@ -37,11 +39,13 @@ namespace Elementa {
 
     void renderUI();
 
-    void setVsync(bool vsync);
+    void setWindowVsync(bool vsync);
 
-    void setFpsLimit(int fps_limit);
+    void setWindowFpsLimit(int fps_limit);
 
-    void setTitle(const char *title);
+    void setWindowTitle(const char *title);
+
+    void setWindowBackground(Color color);
 
     int getWindowWidth();
 

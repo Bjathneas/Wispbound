@@ -17,10 +17,19 @@ namespace Elementa {
         GLuint ID;
     };
 
+    Shader loadShaderFromString(const char *string, SHADER_TYPE type);
+
     Shader loadShaderFromFile(const char *path);
 
-    Shader loadShaderFromString(const char *string, SHADER_TYPE type);
-    //TODO: create ShaderProgram
+    struct ShaderProgram {
+        GLuint ID;
+    };
+
+    ShaderProgram createShaderProgram();
+
+    void addShaderToProgram(Shader &shader, ShaderProgram &program);
+
+    void useShaderProgram(ShaderProgram &program);
 }
 
 #endif //WISPBOUND_SHADER_H

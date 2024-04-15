@@ -38,7 +38,7 @@ namespace Elementa {
 
         glfwSwapInterval(window.vsync);
 
-        glClearColor(135 / 255.0, 206 / 255.0, 235 / 255.0, 1.0);
+        setWindowBackground(window.background_color);
 
         glViewport(0, getWindowWidth(), 0, getWindowHeight());
 
@@ -62,7 +62,7 @@ namespace Elementa {
             updateInputData();
             glfwPollEvents();
 
-            if (window.fps_limit > 0 && !window.vsync) {
+            if (window.fps_limit > 0) {
                 double frame_time = 1.0 / window.fps_limit;
                 double sleep_time = frame_time - (TIME - previous_time);
                 if (sleep_time > 0.0)
@@ -82,6 +82,29 @@ namespace Elementa {
     void renderUI() {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    }
+
+    void setWindowVsync(bool vsync) {
+        window.vsync = vsync;
+        glfwSwapInterval(vsync);
+
+        if (vsync)
+            window.fps_limit = 0;
+    }
+
+    void setWindowFpsLimit(int fps_limit) {
+        window.fps_limit = fps_limit;
+    }
+
+    void setWindowTitle(const char *title) {
+        window.title = title;
+
+        glfwSetWindowTitle(window.glfw_window, title);
+    }
+
+    void setWindowBackground(Color color) {
+        window.background_color = color;
+        glClearColor(color.r, color.g, color.b, color.a);
     }
 
     int getWindowWidth() {
