@@ -1,0 +1,10 @@
+ECS World Rendering system
+
+how to go about finding objects that are within the scene
+problem: looping through all entities that are non static can become a hassle
+solutions:
+    [x] each time an entity moves using a function defined in the Engine, search a sorted position component array to find where that entity belongs in the array
+    each time an entity is given a position component, loop through the sorted array increasing by 25% until it is determined that the component can be placed, then loop that small sub section to
+        determine a final position
+problem: keeping a pointer to a shader_file and creating a component to store the texture with that data is too cumbersome
+solution: Create an internal resource manager to store the textures by name, then place a string to that textures name in the render component
